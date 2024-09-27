@@ -1,0 +1,11 @@
+@mixin shadow($x, $y, $color) {
+    box-shadow: 0 0 $x $y $color;
+}
+
+@mixin font($fz, $fw, $lh, $color, $family) {
+    font-size: $fz;
+    font-weight: $fw;
+    line-height: $lh;
+    color: $color;
+    font-family: $family, sans-serif;
+}
