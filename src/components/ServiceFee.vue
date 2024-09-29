@@ -40,7 +40,7 @@ const fee = ref<boolean>(false);
     gap: 8px;
     margin: 12px 20px 0;
     padding: 16px;
-    background-color: $color-white;
+    background: $color-white;
     border-radius: 20px;
   }
   &__content {
@@ -67,7 +67,7 @@ const fee = ref<boolean>(false);
     width: 0;
     height: 0;
     &:checked + .fee__slider {
-      background-color: $color-violet;
+      background: $color-violet;
       &:before {
         transform: translateX(24px);
       }
@@ -83,8 +83,8 @@ const fee = ref<boolean>(false);
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $color-violet-1;
-    transition: 0.3s background-color ease-in;
+    background: $color-violet-1;
+    transition: 0.3s background ease-in;
     border-radius: 34px;
     &:before {
       position: absolute;
@@ -93,7 +93,7 @@ const fee = ref<boolean>(false);
       width: 24px;
       left: 3px;
       bottom: 3px;
-      background-color: white;
+      background: white;
       transition: 0.3s transform ease-in;
       border-radius: 50%;
     }

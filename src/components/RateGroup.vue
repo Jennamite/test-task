@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { Experience, Likes } from "@types";
-import Rate from "@/components/Rate.vue";
+import StarRating from "@/components/StarRating.vue";
 import Like from "@/components/Like.vue";
 
 const emits = defineEmits<{
@@ -29,12 +29,12 @@ watch(
 
 <template>
   <div class="experience">
-    <Rate
+    <StarRating
       :title="'Rate your experience'"
       @update="(e: number) => {experience.experience = e}"
     />
     <transition name="appear" mode="out-in" type="transition">
-      <Rate
+      <StarRating
         v-show="experience.experience > 0"
         :title="'Rate Service'"
         @update="(e: number) => {experience.service = e}"
@@ -76,7 +76,7 @@ watch(
     width: 100%;
     padding: 20px;
     border-radius: 20px;
-    background-color: $color-white;
+    background: $color-white;
     resize: none;
     @include font(17px, 400, 24px, $color-black, Manrope);
     &:focus {

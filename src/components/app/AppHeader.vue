@@ -52,7 +52,7 @@ function toggleLang() {
   position: relative;
   justify-content: center;
   padding: 12px 20px;
-  background-color: $color-white;
+  background: $color-white;
   &__lang {
     justify-content: end;
     display: flex;
@@ -64,7 +64,7 @@ function toggleLang() {
       align-items: center;
       gap: 4px;
       height: 100%;
-      background-color: #ffffff;
+      background: #ffffff;
       &:focus {
         outline: none;
       }
@@ -88,7 +88,7 @@ function toggleLang() {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        background-color: #ffffff;
+        background: #ffffff;
       }
     }
   }
@@ -102,7 +102,7 @@ function toggleLang() {
   }
   &__select {
     @include font(16px, 400, 24px, $color-black, Manrope);
-    background-color: transparent;
+    background: transparent;
     padding: 8px 10px;
     border-bottom: 1px $color-black solid;
   }

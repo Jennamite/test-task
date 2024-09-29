@@ -40,7 +40,7 @@ const emits = defineEmits<{
   margin-top: auto;
   &__wrapper {
     margin-top: 40px;
-    background-color: $color-white;
+    background: $color-white;
     border-radius: 20px 20px 0 0;
     padding: 24px 20px;
     display: flex;

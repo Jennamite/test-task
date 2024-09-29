@@ -17,18 +17,15 @@ const emits = defineEmits<{
         class="tips__input"
         type="text"
         v-model="tipsAmount"
-        placeholder="0€"
+        placeholder="0 €"
       />
     </div>
-    <div class="tips__grid">
+    <div class="tips__container">
       <button
         v-for="e in [2, 5, 100]"
         class="tips__button"
-        @click="
-          tipsAmount = e;
-          emits('update', tipsAmount);
-        "
-        :class="{ 'tips__button--active': tipsAmount == e }"
+        @click="emits('update', (tipsAmount = e))"
+        :class="{ 'tips__button--active': tipsAmount === e }"
       >
         {{ e }}
       </button>
@@ -43,7 +40,7 @@ const emits = defineEmits<{
   flex-direction: column;
   gap: 8px;
   &__main {
-    background-color: $color-white;
+    background: $color-white;
     border-radius: 20px;
     height: 96px;
     gap: 8px;
@@ -55,14 +52,14 @@ const emits = defineEmits<{
   &__text {
     @include font(15px, 500, 24px, $color-black, Manrope);
   }
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  &__container {
+    display: flex;
     gap: 4px;
   }
   &__button {
     border-radius: 12px;
-    background-color: $color-white;
+    background: $color-white;
+    width: 100%;
     @include font(13px, 600, 18px, $color-black, Manrope);
     padding: 8px 0;
     &:focus {

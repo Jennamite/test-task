@@ -41,7 +41,7 @@ emits("update", waiters[0]);
 </script>
 
 <template>
-  <div class="waiters">
+  <div class="waiters__container">
     <swiper
       class="waiters__swiper"
       :slides-per-view="3"
@@ -74,10 +74,12 @@ emits("update", waiters[0]);
 
 <style scoped lang="scss">
 .waiters {
-  display: flex;
-  width: 100%;
-  height: fit-content;
-  margin-top: 20px;
+  &__container {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 20px;
+  }
   &__swiper {
     margin: 0;
     height: 92px;

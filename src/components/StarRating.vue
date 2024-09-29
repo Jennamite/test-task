@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import star from "@/assets/icons/star.svg";
+
 const props = defineProps<{ title: string }>();
 const emits = defineEmits<{
   (e: "update", value: number): number;
@@ -11,20 +12,15 @@ const rate = ref<number>(0);
 
 <template>
   <div class="rate">
-    <div class="rate_title-container">
-      <div class="rate-line" />
-      <span class="rate_title">{{ props.title }}</span>
-      <div class="rate-line" />
-    </div>
-    <div class="rate__stars">
+    <h2 class="rate__title-wrapper">
+      <span class="rate__title">{{ props.title }}</span>
+    </h2>
+    <div class="rate__star-container">
       <button
         v-for="e in [1, 2, 3, 4, 5]"
         class="rate__star"
         :class="{ active: rate >= e }"
-        @click="
-          rate = e;
-          emits('update', rate);
-        "
+        @click="emits('update', (rate = e))"
       >
         <star />
       </button>
@@ -38,33 +34,39 @@ const rate = ref<number>(0);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  &_title {
+  &__title {
     @include font(15px, 600, 24px, $color-black, Manrope);
-    min-width: max-content;
-    &-container {
+    &-wrapper {
       display: flex;
-      gap: 8px;
+      justify-content: center;
       align-items: center;
+      position: relative;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #000;
+      margin: 12px 0 12px;
+      span {
+        padding: 0 8px;
+        position: absolute;
+        background: #f8f9fd;
+      }
     }
   }
-  &-line {
-    width: 100%;
-    height: 2px;
-    background-color: $color-violet;
-  }
-  &__stars {
-    display: flex;
-    padding: 16px;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    background-color: $color-white;
-  }
+
   &__star {
-    background-color: transparent;
+    background: transparent;
     height: fit-content;
     width: fit-content;
+    outline: none;
+    &-container {
+      display: flex;
+      padding: 16px;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background: $color-white;
+    }
     &.active svg {
       fill: $color-violet;
     }
@@ -73,6 +75,10 @@ const rate = ref<number>(0);
       height: 36px;
       transition: fill 0.3s ease-in;
       fill: #cbd1d7;
+    }
+    &:focus {
+      box-shadow: 2px 2px 4px gray;
+      border-radius: 12px;
     }
   }
 }

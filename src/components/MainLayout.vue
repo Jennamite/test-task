@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { Waiter, Experience } from "@/types";
+import Modal from "@/components/modals/Modal.vue";
 
 import AppHeader from "./app/AppHeader.vue";
 import AppFooter from "./app/AppFooter.vue";
@@ -9,22 +10,17 @@ import StaffSwiper from "./WaitersSwiper.vue";
 import Tips from "./Tips.vue";
 import RateGroup from "./RateGroup.vue";
 import ServiceFee from "./ServiceFee.vue";
-import Modal from "@/components/modals/Modal.vue";
+
+const modal = ref<boolean>(false);
 
 const waiter = ref<Waiter>();
 const tips = ref<number>(0);
 const experience = ref<Experience>();
 const fee = ref<boolean>(false);
 
-const modal = ref<boolean>(false);
-
 const disabled = computed(() => {
-  return Boolean(waiter.value && tips.value !== 0 && experience.value);
+  return !!(waiter.value && tips.value !== 0 && experience.value);
 });
-
-function pay() {
-  showModal();
-}
 
 function showModal() {
   modal.value = true;
@@ -43,7 +39,7 @@ function hideModal() {
     <Tips @update="(e: number) => {tips = e}" />
     <RateGroup @update="(e: Experience) => {experience = e}" />
     <ServiceFee :name="waiter?.name" :tip="tips" @update="(e: boolean) => {fee = e}" />
-    <AppFooter :value="tips" :fee="fee" :disable="!disabled" @pay="pay" />
+    <AppFooter :value="tips" :fee="fee" :disable="!disabled" @pay="showModal" />
   </div>
   <Modal v-show="modal" @close="hideModal" />
 </template>

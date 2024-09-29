@@ -6,7 +6,7 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div class="modal" @click.self="emits('close')">
+  <div class="modal__wrapper" @click.self="emits('close')">
     <div class="modal__container">
       <button class="modal__close" @click="emits('close')">
         <closeIcon />
@@ -14,40 +14,40 @@ const emits = defineEmits<{
       <img class="modal__img" src="@/assets/images/swen.webp" alt="swen" />
       <span class="modal__title">Profit goes to SWEN</span>
       <span class="modal__info">By leaving a tip, you take care of nature</span>
-      <button class="modal__button" @click="emits('close')">
-        Learn more about SWEN
-      </button>
+      <button class="modal__button" @click="emits('close')">Learn more about SWEN</button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  &__wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
   &__container {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    background: $color-white;
     padding: 12px;
     border-radius: 24px;
     width: 320px;
-    background-color: $color-white;
   }
   &__close {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: $color-white;
+    background: $color-white;
     padding: 12px;
     display: flex;
     justify-content: center;
@@ -73,7 +73,7 @@ const emits = defineEmits<{
     width: 100%;
     border-radius: 40px;
     padding: 10px;
-    background-color: $color-black;
+    background: $color-black;
     @include font(16px, 500, 24px, $color-white, Manrope);
   }
 }

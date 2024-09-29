@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import like_atmosphere from "@/assets/images/likes/atmosphere.webp";
-import like_food from "@/assets/images/likes/food.webp";
-import like_service from "@/assets/images/likes/service.webp";
-import like_cleanliness from "@/assets/images/likes/cleanliness.webp";
 import { ref } from "vue";
-
 import { Likes } from "@types";
 
-const buttons: Array<{ img: string; text: Likes }> = [
+import service from "@/assets/images/likes/service.webp";
+import cleanliness from "@/assets/images/likes/cleanliness.webp";
+import atmosphere from "@/assets/images/likes/atmosphere.webp";
+import food from "@/assets/images/likes/food.webp";
+
+const buttons: Array<{ icon: string; label: Likes }> = [
   {
-    img: like_service,
-    text: "Service",
+    icon: service,
+    label: "Service",
   },
   {
-    img: like_cleanliness,
-    text: "Cleanliness",
+    icon: cleanliness,
+    label: "Cleanliness",
   },
   {
-    img: like_atmosphere,
-    text: "Atmosphere",
+    icon: atmosphere,
+    label: "Atmosphere",
   },
   {
-    img: like_food,
-    text: "Food quality",
+    icon: food,
+    label: "Food quality",
   },
 ];
 
 const likes = ref<Likes[]>([]);
 
-function toggle_like(item: Likes) {
+function selectLike(item: Likes) {
   if (likes.value.includes(item)) {
     likes.value = likes.value.filter((el) => el !== item);
   } else {
@@ -48,16 +48,16 @@ const emits = defineEmits<{
       <button
         v-for="el in buttons"
         class="like__button"
-        :class="{ active: likes.includes(el.text) }"
+        :class="{ active: likes.includes(el.label) }"
         @click="
-          toggle_like(el.text);
+        selectLike(el.label);
           emits('update', likes);
         "
       >
         <span class="like__button_bg">
-          <img :src="el.img" alt="Rate icon" />
+          <img :src="el.icon" />
         </span>
-        <span class="like__button_text">{{ el.text }}</span>
+        <span class="like__button_label">{{ el.label }}</span>
       </button>
     </div>
   </div>
@@ -76,23 +76,24 @@ const emits = defineEmits<{
   &__buttons {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
   &__button {
-    background-color: transparent;
+    background: transparent;
     display: flex;
     flex-direction: column;
     gap: 4px;
     align-items: center;
+    padding: 0;
     &:focus {
       outline: none;
     }
     &.active {
-      & .like__button_text {
+      & .like__button_label {
         color: $color-violet;
       }
       & .like__button_bg {
-        background-color: $color-violet;
+        background: $color-violet;
       }
     }
     &_bg {
@@ -104,14 +105,10 @@ const emits = defineEmits<{
       align-items: center;
       justify-content: center;
       & img {
-        width: 48px;
-        height: 48px;
-        box-sizing: content-box;
-        padding: 13px;
-        transition: background-color 0.3s ease-in;
+        transition: background 0.3s ease-in;
       }
     }
-    &_text {
+    &_label {
       transition: color 0.3s ease-in;
       @include font(12px, 500, 20px, $color-gray-1, Manrope);
     }
