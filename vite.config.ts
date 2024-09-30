@@ -25,5 +25,6 @@ export default defineConfig({
           @import "@/assets/styles/index.scss";`
       }
     }
-  }
+  },
+	base: "./"
 })
